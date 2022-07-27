@@ -13,7 +13,6 @@ spring:
     cache: false
 
   # DataSourceProperties
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -25,6 +24,19 @@ spring:
       maximum-pool-size: 15
       minimum-idle: 5
       idle-timeout: 30000
+
+  # MailMailProperties  @ConfigurationProperties(prefix = "spring.mail")
+  mail:
+    host: smtp.126.com
+    port: 465
+    username: liuxuan1021@126.com
+    password: NZLJKOJQNERPUEJJ
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
 
 
 # MybatisProperties
@@ -39,3 +51,4 @@ mybatis:
 logging:
   level:
     io.whysff.community: debug
+
