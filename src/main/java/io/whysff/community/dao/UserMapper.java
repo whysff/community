@@ -2,6 +2,7 @@ package io.whysff.community.dao;
 
 import io.whysff.community.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 @Mapper
 public interface UserMapper {

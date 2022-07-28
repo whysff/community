@@ -41,7 +41,7 @@
 
     <!-- int updateStatus(int id, int status);-->
     <update id="updateStatus">
-        UPDATE user SET statue = #{statue} WHERE id = #{id}
+        UPDATE user SET status = #{status} WHERE id = #{id}
     </update>
 
     <!-- int updateHeader(int id, String headerUrl);-->
