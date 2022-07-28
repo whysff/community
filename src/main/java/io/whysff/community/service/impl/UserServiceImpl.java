@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
 
     @Override
     @Transactional
-    public Map<String, Object> login(String username, String password, int expiredSeconds) {
+    public Map<String, Object> login(String username, String password, long expiredSeconds) {
         Map<String, Object> map = new HashMap<>();
 
         // 空值处理
@@ -141,7 +141,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         }
         // 验证状态
         if (user.getStatus() == 0) {
-            map.put("usernameMsg", "该账号为激活！");
+            map.put("usernameMsg", "该账号未激活！");
             return map;
         }
         // 验证密码
