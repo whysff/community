@@ -162,4 +162,9 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         map.put("ticket", loginTicket.getTicket());
         return map;
     }
+
+    @Override
+    public void logout(String ticket) {
+        loginTicketMapper.updateStatus(ticket, 1);
+    }
 }
