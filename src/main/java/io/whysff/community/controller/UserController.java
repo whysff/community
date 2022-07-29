@@ -32,13 +32,13 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Value("community.path.upload")
+    @Value("${community.path.upload}")
     private String uploadPath;
 
-    @Value("community.path.domain")
+    @Value("${community.path.domain}")
     private String domain;
 
-    @Value("server.servlet.context-path")
+    @Value("${server.servlet.context-path}")
     private String contextPath;
 
     @Autowired
