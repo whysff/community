@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -79,5 +83,27 @@ public class UserController {
         userService.updataHeader(user.getId(), headerUrl);
 
         return "redirect:/index";
+    }
+
+    @RequestMapping(path = "/header/{filename}", method = RequestMethod.GET)
+    public void getHeader(@PathVariable("filename") String filename, HttpServletResponse response) {
+        // 服务器存放路径
+        filename = uploadPath + "/" + filename;
+        // 解析文件后缀
+        String suffix = filename.substring(filename.lastIndexOf("."));
+        // 响应图片
+        response.setContentType("image/" + suffix);
+        try (
+                ServletOutputStream os = response.getOutputStream();
+                FileInputStream fis = new FileInputStream(filename);
+                ) {
+            byte[] buffer = new byte[1024];
+            int b = 0;
+            while ((b = fis.read(buffer)) != -1) {
+                os.write(buffer, 0, b);
+            }
+        } catch (IOException e) {
+            logger.error("读取头像失败：" + e.getMessage());
+        }
     }
 }
