@@ -30,7 +30,7 @@ spring:
     host: smtp.126.com
     port: 465
     username: liuxuan1021@126.com
-    password: NZLJKOJQNERPUEJJ
+    password: 
     protocol: smtps
     properties:
       mail:
